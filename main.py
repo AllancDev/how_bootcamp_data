@@ -3,15 +3,14 @@ import time
 
 from schedule import repeat, every, run_pending
 
-from ingestor import DaySummaryIngestor
+from ingestors import DaySummaryIngestor
 from writers import DataWriter
-
 
 
 if __name__ == "__main__":
     day_summary_ingestor = DaySummaryIngestor(
         writer=DataWriter,
-        coins=["BTC", "ETH", "LTC", "BHC"],
+        coins=["BTC", "ETH", "LTC", "BCH"],
         default_start_date=datetime.date(2022, 12, 30)
     )
 
@@ -19,7 +18,7 @@ if __name__ == "__main__":
     def job():
         day_summary_ingestor.ingest()
 
-    
+
     while True:
         run_pending()
         time.sleep(0.5)

@@ -2,7 +2,7 @@ import datetime
 from unittest.mock import patch
 
 
-from ingestor import DataIngestor
+from ingestors import DataIngestor
 from writers import DataWriter
 
 @patch("ingestors.DataIngestor.__abstractmethods__", set())

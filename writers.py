@@ -1,7 +1,6 @@
 import datetime
 import os
 import json
-
 from typing import List
 
 
@@ -21,8 +20,7 @@ class DataWriter:
         os.makedirs(os.path.dirname(self.filename), exist_ok=True)
         with open(self.filename, "a") as f:
             f.write(row)
-        
-    
+
     def write(self, data: [List, dict]):
         if isinstance(data, dict):
             self._write_row(json.dumps(data) + "\n")
