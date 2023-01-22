@@ -11,7 +11,6 @@ logging.basicConfig(level=logging.INFO)
 
 
 class MercadoBitcoinApi(ABC):
-
     def __init__(self, coin: str) -> None:
         self.coin = coin
         self.base_endpoint = "https://www.mercadobitcoin.net/api"
@@ -37,13 +36,16 @@ class DaySummaryApi(MercadoBitcoinApi):
     def _get_endpoint(self, date: datetime.date) -> str:
         return f"{self.base_endpoint}/{self.coin}/{self.type}/{date.year}/{date.month}/{date.day}"
 
+
 class TradesApi(MercadoBitcoinApi):
     type = "trades"
 
     def _get_unix_epoch(self, date: datetime.datetime) -> int:
         return int(date.timestamp())
 
-    def _get_endpoint(self, date_from: datetime.datetime = None, date_to: datetime.datetime = None) -> str:
+    def _get_endpoint(
+        self, date_from: datetime.datetime = None, date_to: datetime.datetime = None
+    ) -> str:
         if date_from and not date_to:
             unix_date_from = self._get_unix_epoch(date_from)
             endpoint = f"{self.base_endpoint}/{self.coin}/{self.type}/{unix_date_from}"
@@ -55,5 +57,5 @@ class TradesApi(MercadoBitcoinApi):
             endpoint = f"{self.base_endpoint}/{self.coin}/{self.type}/{unix_date_from}/{unix_date_to}"
         else:
             endpoint = f"{self.base_endpoint}/{self.coin}/{self.type}"
-        
+
         return endpoint

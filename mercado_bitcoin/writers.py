@@ -6,11 +6,13 @@ from tempfile import NamedTemporaryFile
 from typing import List
 import boto3
 
+
 class DataTypeNotSupportedForIngestionException(Exception):
     def __init__(self, data):
         self.data = data
         self.message = f"Data type {type(data)} is not supported for ingestion"
         super().__init__(self.message)
+
 
 class DataWriter:
     def __init__(self, coin: str, api: str) -> None:
@@ -34,30 +36,29 @@ class DataWriter:
 
     def write(self, data: [List, dict]):
         self._write_to_file(data=data)
-        
+
 
 class S3Writter(DataWriter):
     def __init__(self, coin: str, api: str) -> None:
         super().__init__(coin, api)
         self.tempfile = NamedTemporaryFile()
-        self.client = boto3.client("s3", 
-            aws_access_key_id='AKIAXEJFWG6UA5FKQ3FY',
-            aws_secret_access_key = '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',
-            region_name="us-east-1"
+        self.client = boto3.client(
+            "s3",
+            aws_access_key_id="AKIAXEJFWG6UA5FKQ3FY",
+            aws_secret_access_key="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",
+            region_name="us-east-1",
         )
         self.key = f"mercado_bitcoin/{self.api}/coin={self.coin}/extracted_at={datetime.datetime.now().date()}/{datetime.datetime.now()}.json"
 
     def _write_row(self, row: str) -> None:
         with open(self.tempfile.name, "a") as f:
             f.write(row)
-    
+
     def write(self, data: [List, dict]):
-       self._write_to_file(data=data)
-       self._write_file_to_s3() 
-    
+        self._write_to_file(data=data)
+        self._write_file_to_s3()
+
     def _write_file_to_s3(self):
         self.client.put_object(
-            Body=self.tempfile,
-            Bucket="belisco-data-lake-raw-adev",
-            Key=self.key
+            Body=self.tempfile, Bucket="belisco-data-lake-raw-adev", Key=self.key
         )
