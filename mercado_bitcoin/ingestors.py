@@ -54,23 +54,21 @@ class AwsDataIngestor(ABC):
     def __init__(
         self, writer, coins: List[str], default_start_date: datetime.date
     ) -> None:
-        self.dynamodb_checkpoint = DynamoCheckpoints(
+        self.dynamo_checkpoint = DynamoCheckpoints(
             model=CheckpointModel,
             report_id=self.__class__.__name__,
-            default_start_date=default_start_date,
-        )
-
+            default_start_date=default_start_date)
         self.default_start_date = default_start_date
         self.coins = coins
         self.writer = writer
         self._checkpoint = self._load_checkpoint()
 
     def _load_checkpoint(self) -> datetime.date:
-        return self.dynamodb_checkpoint.get_checkpoint()
+        return self.dynamo_checkpoint.get_checkpoint()
 
     def _update_checkpoint(self, value):
         self._checkpoint = value
-        self.dynamodb_checkpoint.create_or_update_checkpoint(checkpoint_date=self._checkpoint)
+        self.dynamo_checkpoint.create_or_update_checkpoint(checkpoint_date=self._checkpoint)
 
     @abstractmethod
     def ingest(self) -> None:
