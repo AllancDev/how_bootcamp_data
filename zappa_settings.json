@@ -1,0 +1,18 @@
+{
+    "dev": {
+        "app_function": "mercado_bitcoin.lambda_function",
+        "aws_region": "us-east-1",
+        "profile_name": "allan_camargo",
+        "project_name": "a005",
+        "runtime": "python3.9",
+        "s3_bucket": "zappa-qiu78e4vz",
+        "events": [
+            {   
+                "function": "mercado_bitcoin.lambda_handler.lambda_handler",
+                "expression": "rate(1 minute)" 
+            }
+        ],
+        "memory_size": 128,
+        "cloudwatch_log_level": "INFO"
+    }
+}

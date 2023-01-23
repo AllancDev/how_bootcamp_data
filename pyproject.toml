@@ -7,17 +7,41 @@ readme = "README.md"
 packages = [{include = "mercado_bitcoin_lambda"}]
 
 [tool.poetry.dependencies]
-python = "^3.10"
-requests = "^2.28.2"
+python = "^3.8"
+zappa = "0.50.0"
+requests = "^2.25.1"
+boto3 = "^1.17.108"
+backoff = "^1.10.0"
 ratelimit = "^2.2.1"
-backoff = "^2.2.1"
-boto3 = "^1.26.54"
+pynamodb = "^5.1.0"
 
-
-[tool.poetry.group.dev.dependencies]
-black = "^22.12.0"
-zappa = "^0.56.1"
+[tool.poetry.dev-dependencies]
+black = "^21.6b0"
+pytest = "^6.2.4"
+flake8 = "^3.9.2"
+pre-commit = "^2.13.0"
+pytest-cov = "^2.12.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.github
+  | \.circleci
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \venv
+  | \.venv
+  | \.eggs
+  | _build
+  | buck-out
+  | build
+  | dist
+  | src
+  | venv
+)/
+'''
