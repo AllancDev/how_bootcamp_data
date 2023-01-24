@@ -2,7 +2,6 @@
     "prod": {
         "app_function": "mercado_bitcoin.lambda_function",
         "aws_region": "us-east-1",
-        "profile_name": "allan_camargo",
         "project_name": "mercado_bitcoin",
         "runtime": "python3.8",
         "s3_bucket": "zappa-acdev",
