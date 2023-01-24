@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 from typing import List
 
 from mercado_bitcoin.apis import DaySummaryApi
-from checkpoints import DynamoCheckpoints, CheckpointModel
+from mercado_bitcoin.checkpoints import DynamoCheckpoints, CheckpointModel
 
 
 class DataIngestor(ABC):
