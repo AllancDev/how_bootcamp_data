@@ -58,6 +58,4 @@ class TradesApi(MercadoBitcoinApi):
         else:
             endpoint = f"{self.base_endpoint}/{self.coin}/{self.type}"
         
-        print(endpoint)
-
         return endpoint
