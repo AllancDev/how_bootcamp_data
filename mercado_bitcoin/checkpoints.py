@@ -11,10 +11,8 @@ logging.basicConfig(level=logging.INFO)
 
 class CheckpointModel(Model):
     class Meta:
-        aws_access_key_id = "AKIAXEJFWG6UFGTML747"
-        aws_secret_access_key = "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"
         table_name = "mercado_bitcoin_ingestor_checkpoints"
-        region = "us-west-1"
+        region = "us-east-1"
 
     report_id = UnicodeAttribute(hash_key=True)
     checkpoint_date = UnicodeAttribute()

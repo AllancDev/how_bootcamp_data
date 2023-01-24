@@ -14,6 +14,7 @@ boto3 = "^1.17.108"
 backoff = "^1.10.0"
 ratelimit = "^2.2.1"
 pynamodb = "^5.1.0"
+schedule = "^1.1.0"
 
 [tool.poetry.dev-dependencies]
 black = "^21.6b0"
