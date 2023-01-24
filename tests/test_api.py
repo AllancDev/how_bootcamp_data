@@ -42,13 +42,13 @@ class TestTradesApi:
                 "TEST",
                 datetime.datetime(2019, 1, 1),
                 datetime.datetime(2019, 1, 2),
-                "https://www.mercadobitcoin.net/api/TEST/trades/1546308000/1546394400",
+                "https://www.mercadobitcoin.net/api/TEST/trades/1546300800/1546387200",
             ),
             (
                 "TEST",
-                datetime.datetime(2021, 6, 12),
-                datetime.datetime(2021, 6, 15),
-                "https://www.mercadobitcoin.net/api/TEST/trades/1623466800/1623726000",
+                datetime.datetime(2019, 1, 1),
+                datetime.datetime(2019, 1, 2),
+                "https://www.mercadobitcoin.net/api/TEST/trades/1546300800/1546387200",
             ),
             ("TEST", None, None, "https://www.mercadobitcoin.net/api/TEST/trades"),
             (
@@ -61,7 +61,7 @@ class TestTradesApi:
                 "TEST",
                 datetime.datetime(2021, 6, 12),
                 None,
-                "https://www.mercadobitcoin.net/api/TEST/trades/1623466800",
+                "https://www.mercadobitcoin.net/api/TEST/trades/1623456000",
             ),
         ],
     )
@@ -83,23 +83,23 @@ class TestTradesApi:
         [
             (
                 datetime.datetime(2019, 1, 1),
-                int(datetime.datetime(2019, 1, 1).timestamp()),
+                1546300800,
             ),
             (
                 datetime.datetime(2022, 12, 30),
-                int(datetime.datetime(2022, 12, 30).timestamp()),
+                1672358400,
             ),
             (
                 datetime.datetime(2022, 12, 25),
-                int(datetime.datetime(2022, 12, 25).timestamp()),
+                1671926400,
             ),
             (
                 datetime.datetime(2022, 12, 2),
-                int(datetime.datetime(2022, 12, 2).timestamp()),
+                1669939200,
             ),
             (
                 datetime.datetime(2022, 12, 5),
-                int(datetime.datetime(2022, 12, 5).timestamp()),
+                1670198400,
             ),
         ],
     )
